@@ -28,7 +28,7 @@ snow ="     \/  \n  _\_\/\/_/_\n __\_\/_/__\n __/_/\_\__\n  / /\/\ \ \n     /\ "
 
 
 def reset_timer():
-	thread2=Thread(target = generous_counter, name ="thread-2")
+	thread2=Thread(target = generous_counter, name ="thread-2");
 	Thread.start( thread2 );
 	global counter; 
 	global count_hits ; 
@@ -58,19 +58,19 @@ def generous_counter():
 		print("\r            ",end='');
 		print("\r"+str(counter),end='');
 		if(counter == revolution):
-			winsound.Beep(330, 600) # C
-			winsound.Beep(262, 600) # C
-			winsound.Beep(294, 600) # D
-			winsound.Beep(194, 600) # E
-			counter = 0 ;
+			winsound.Beep(330, 600);
+			winsound.Beep(262, 600);
+			winsound.Beep(294, 600);
+			winsound.Beep(194, 600);
+			counter = 0;
 		elif(counter == -1):
 			epochlist.append(counter_between);
 			if(count_hits < total ):
 				record_file.write("Assessment:")
-				record_file.write("You did not finish your task, you give up!\n")
+				record_file.write("You did not finish your task, you give up!\n");
 			else:
 				record_file.write("You are nice!\n"); 
-			record_file.write("Epoch:\n")
+			record_file.write("Epoch:\n");
 			record_file.write(str(epochlist)+"\n");
 			record_file.write("Total Time Used:\n");
 			record_file.write(str(sum(epochlist))+"seconds"); 
@@ -81,17 +81,15 @@ def generous_counter():
 			counter = counter + 1; 
 
 if(len(sys.argv)!=4):
-	print("usage: python multi_clock_v2.py [revolution] [total loops] [\"What task?\"] ")
+	print("Usage: python multi_clock_v2.py [revolution] [total loops] [\"What task?\"] ");
 	exit(0);
 reason = str(sys.argv[3]); 
 total = int(sys.argv[2]);
 revolution = int(sys.argv[1]) ;
 
-#create store directory if not exist 
 if(not os.path.exists(store_dir)):
 	os.makedirs(store_dir)
 
-#create file for storing basic info
 record_file_name = str(time.time());
 record_file = open(store_dir+record_file_name,"w");
 record_file.write(str(datetime.now()));
@@ -102,9 +100,9 @@ record_file.write(sys.argv[1]);
 record_file.write("Total loops:");
 record_file.write(sys.argv[2]);
 
-thread1=Thread(target = reset_timer, name ="thread-1")
+thread1=Thread(target = reset_timer, name ="thread-1");
 try:
-   Thread.start( thread1 )
+   Thread.start( thread1 );
 except:
    print("Error: unable to start thread");
    sys.exits(0);
